@@ -11,16 +11,17 @@ interface ParamConfig extends RequestInit {
 
 //endpoint-> /接口名
 export const http = async (endpoint: string, { data, token, headers, ...customConfig }: ParamConfig ={}) => {
+    const sixProjectToken:string = auth.getToken().token ;
     const config = {
         method: 'GET',
         headers: {
-            Authorization: token ? `Bearer ${token}` : '',
+            'SCM_HOSPITAL_LIUYUAN_TOKEN': sixProjectToken?sixProjectToken:'',
             'Content-Type': data ? 'application/json' : '',
         },
         ...customConfig
     }
 
-
+    
     //判断 请求类型， 数据区别处理
     if (config.method.toUpperCase() === 'GET') {
         endpoint += `?${qs.stringify(data)}`

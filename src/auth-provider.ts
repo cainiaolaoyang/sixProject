@@ -2,7 +2,6 @@
 
 import { http } from "https/http"
 import { LoginForm } from "page/login"
-const apiUrl = process.env.REACT_APP_API_URL
 
 const localStorageKey = 'SCM_HOSPITAL_LIUYUAN_TOKEN'
 
@@ -23,7 +22,7 @@ export const getUserInfo = ()=> {
     return info? JSON.parse(info): null
 }
 
-export const getToken = ():string => {
+export const getToken = ():loginInfo => {
     var info = getUserInfo()
     return info
 }
@@ -45,12 +44,8 @@ export const login = async (data: LoginForm) => {
 
 
 export const logout = async ()=>{
-    const res = await fetch(`${apiUrl}/Login/logout`, {
-        method: "POST",
-        mode: 'cors',
-        headers: { "Content-Type": "application/json" }
-    })
-    if (res.ok) {
+    return await http(`/Login/getdelLogin`)
+    .then(res=>{
         localStorage.removeItem(localStorageKey)
-    }
+    })
 }

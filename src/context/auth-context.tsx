@@ -23,7 +23,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<auth.loginInfo | null>(null);
 
     const login = (form: LoginForm) => auth.login(form).then(setUser)
-    const logout = () => auth.logout().then(() => setUser(null))
+    const logout = () => auth.logout().then(() => {
+        setUser(null)
+        window.location.reload();
+    })
 
     useMount(()=>{
         setUser(auth.getUserInfo())

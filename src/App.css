@@ -1,5 +1,5 @@
 @import '~antd/dist/antd.css';
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -36,4 +36,11 @@
   to {
     transform: rotate(360deg);
   }
+} */
+html{
+  font-size: 62.5%;/* 1rem = 10px */
+}
+
+html body #root .app{
+  min-height: 100vh;
 }
